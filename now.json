@@ -16,6 +16,6 @@
       "src": "/requestlist/id/(.*)",
       "dest": "/server.js",
       "methods": ["GET"]
-    },
+    }
   ]
 }
