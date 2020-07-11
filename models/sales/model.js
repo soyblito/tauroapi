@@ -13,7 +13,7 @@ const mySchema = new Schema({
   sellsmenValue: Number,
   amount: Number,
   sellstateValue: Number,
-  selectedProductsList: String,
+  selectedProductsList: Array,
 });
 
 const model = mongoose.model('Sales', mySchema);
