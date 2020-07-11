@@ -239,6 +239,14 @@ app.post('/sales/add', async (req,res) => {
   });
 });
 
+app.post('/sales/listsales', async (req,res)=>{
+  const sales = await ModelSales.find();
+  res.send({
+    error: false,
+    body: sales,
+  });  
+});
+
 app.get('/listproducts2', async (req,res)=>{
   res.send({
     error: false,
