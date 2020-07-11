@@ -90,6 +90,7 @@ ftps.ls().exec(function(err, res){
 const ModelUser = require('./models/users/model');
 const ModelProducts = require('./models/products/model');
 const ModelCategories = require('./models/categories/model');
+const ModelSales = require('./models/sales/model');
 
 const db = require('./db');
 const jwt = require("jsonwebtoken");
@@ -213,6 +214,29 @@ app.get('/products/listproducts', async (req,res)=>{
     });  
   });
   
+});
+
+app.post('/sales/add', async (req,res) => {
+  const item = {
+    clientName: req.body.body.clientName,
+    clientPhone: req.body.body.clientPhone,
+    clientAdress: req.body.body.clientAdress,
+    deliveryValue: req.body.body.deliveryValue,
+    contactValue: req.body.body.contactValue,
+    paymentValue: req.body.body.paymentValue,
+    sellsmenValue: req.body.body.sellsmenValue,
+    amount: req.body.body.amount,
+    sellstateValue: req.body.body.sellstateValue,
+    selectedProductsList: req.body.body.selectedProductsList
+  };
+
+  const myRequest = new ModelSales(item);
+  const dataSaved = myRequest.save();
+
+  res.send({
+    error: false,
+    body: dataSaved,
+  });
 });
 
 app.get('/listproducts2', async (req,res)=>{
