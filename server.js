@@ -276,13 +276,11 @@ app.post('/sales/update', async (req,res) => {
   });
 });
 
-app.post('/sales/listsales', async (req,res)=>{
-  // poner filtros
-  let filter = {};
-  if (req.body.body.filterStatus !== null) {
-      filter = { sellstateValue: 1 };
+app.post('/sales/listsales', async (req,res)=>{  
+  let filter = {};  
+  if (req && req.body && req.body.body && req.body.body.filterStatus) {
+    filter = { sellstateValue: req.body.body.filterStatus };
   }
-
   const sales = await ModelSales.find(filter);
   res.send({
     error: false,
