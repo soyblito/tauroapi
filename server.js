@@ -239,6 +239,15 @@ app.post('/sales/add', async (req,res) => {
   });
 });
 
+app.post('/sales/retrieve', async (req,res) => {
+  
+  const myRequest = await ModelSales.find({_id:req.body.body._id});
+  res.send({
+    error: false,
+    body: myRequest,
+  });
+});
+
 app.post('/sales/listsales', async (req,res)=>{
   const sales = await ModelSales.find();
   res.send({
