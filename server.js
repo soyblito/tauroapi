@@ -157,6 +157,15 @@ app.post('/categories/delete', async (req,res)=>{
   });
 });
 
+app.post('/categories/update', async (req,res) => {
+  const { name, description } = req.body.body;
+  const myRequest = await ModelCategories.findByIdAndUpdate({_id:req.body.body._id}, { name, description });
+  res.send({
+    error: false,
+    body: myRequest,
+  });
+});
+
 app.post('/products/delete', async (req,res)=>{ 
   const product = await ModelProducts.remove({ _id: req.body.body._id });
   res.send({
@@ -165,9 +174,19 @@ app.post('/products/delete', async (req,res)=>{
   });
 });
 
+app.post('/products/update', async (req,res) => {
+  const { name, state, description, description2, price, sizex, sizey, sizez, color, size, stock, cat,  img1, imgURL1, img2, imgURL2, img3, imgURL3, filestl, imgURL4, filegcode, imgURL5, link_mp, link_ig } = req.body.body;
+  const myRequest = await ModelProducts.findByIdAndUpdate({_id:req.body.body._id}, { name, state, description, description2, price, sizex, sizey, sizez, color, size, stock, cat,  img1, imgURL1, img2, imgURL2, img3, imgURL3, filestl, imgURL4, filegcode, imgURL5, link_mp, link_ig });
+  res.send({
+    error: false,
+    body: myRequest,
+  });
+});
+
 app.post('/products/add', async (req,res) => {
 
   //const product = await ModelProducts.findOne({ name: req.body.user });
+  
   const item = {
     name: req.body.body.name,
     state: req.body.body.state,
@@ -229,7 +248,7 @@ app.post('/sales/add', async (req,res) => {
     sellstateValue: req.body.body.sellstateValue,
     selectedProductsList: req.body.body.selectedProductsList
   };
-
+  
   const myRequest = new ModelSales(item);
   const dataSaved = myRequest.save();
 
@@ -240,7 +259,6 @@ app.post('/sales/add', async (req,res) => {
 });
 
 app.post('/sales/retrieve', async (req,res) => {
-  
   const myRequest = await ModelSales.find({_id:req.body.body._id});
   res.send({
     error: false,
@@ -248,8 +266,24 @@ app.post('/sales/retrieve', async (req,res) => {
   });
 });
 
+app.post('/sales/update', async (req,res) => {
+  const {clientName, clientPhone, clientAdress,deliveryValue,contactValue,paymentValue,sellsmenValue,amount,sellstateValue,selectedProductsList} = req.body.body;
+  const myRequest = await ModelSales.findByIdAndUpdate({_id:req.body.body._id}, { clientName, clientPhone, clientAdress,deliveryValue,contactValue,paymentValue,sellsmenValue,amount,sellstateValue,selectedProductsList });
+
+  res.send({
+    error: false,
+    body: myRequest,
+  });
+});
+
 app.post('/sales/listsales', async (req,res)=>{
-  const sales = await ModelSales.find();
+  // poner filtros
+  let filter = {};
+  if (req.body.body.filterStatus !== null) {
+      filter = { sellstateValue: 1 };
+  }
+
+  const sales = await ModelSales.find(filter);
   res.send({
     error: false,
     body: sales,
