@@ -288,6 +288,14 @@ app.post('/sales/listsales', async (req,res)=>{
   });  
 });
 
+app.post('/sales/delete', async (req,res)=>{ 
+  const sales = await ModelSales.remove({ _id: req.body.body._id });
+  res.send({
+    error: false,
+    body: sales,
+  });
+});
+
 app.get('/listproducts2', async (req,res)=>{
   res.send({
     error: false,
