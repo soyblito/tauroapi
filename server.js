@@ -266,6 +266,15 @@ app.post('/sales/retrieve', async (req,res) => {
   });
 });
 
+app.post('/sales/retrieveApp', async (req,res) => {
+  const myRequest = await ModelSales.find({_id:req.body._id});
+  res.send({
+    error: false,
+    body: myRequest,
+  });
+});
+
+
 app.post('/sales/update', async (req,res) => {
   const {clientName, clientPhone, clientAdress,deliveryValue,contactValue,paymentValue,sellsmenValue,amount,sellstateValue,selectedProductsList} = req.body.body;
   const myRequest = await ModelSales.findByIdAndUpdate({_id:req.body.body._id}, { clientName, clientPhone, clientAdress,deliveryValue,contactValue,paymentValue,sellsmenValue,amount,sellstateValue,selectedProductsList });
