@@ -269,6 +269,7 @@ app.post('/sales/retrieve', async (req,res) => {
 app.post('/sales/retrieveApp', async (req,res) => {
   const myRequest = await ModelSales.find({_id:req.body._id});
   res.send({
+    debug: req.body,
     error: false,
     body: myRequest,
   });
