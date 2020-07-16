@@ -232,7 +232,24 @@ app.get('/products/listproducts', async (req,res)=>{
       body: populated,
     });  
   });
-  
+});
+
+app.post('/products/retrieve', async (req,res) => {
+  const myRequest = await ModelProducts.find({_id:req.body.body._id}).populate('cat').exec( (err, populated) => {
+    res.send({
+      error: false,
+      body: populated,
+    });
+  });
+});
+
+app.post('/products/retrieveApp', async (req,res) => {
+  const myRequest = await ModelProducts.find({_id:req.body._id}).populate('cat').exec( (err, populated) => {
+    res.send({
+      error: false,
+      body: populated,
+    });
+  });
 });
 
 app.post('/sales/add', async (req,res) => {
