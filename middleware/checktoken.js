@@ -3,6 +3,11 @@ const config = require('../config/auth.config');
 
 let checkToken = (req,res,next) => {
   let token = req.headers.authorization; 
+  return res.json({
+    success: false,
+    message: token
+  });
+  /*
   token = token.slice(7, token.length);
   if (token) {
     jwt.verify(token, config.secret, (err, decoded) => {
@@ -27,6 +32,7 @@ let checkToken = (req,res,next) => {
       message: 'Auth token is not supplied'
     });
   }
+  */
 };
 
 module.exports = {
