@@ -334,7 +334,7 @@ app.get('/listproducts2', async (req,res)=>{
   });
 });
 
-app.post('/test', async function(req,res){
+app.get('/test', async function(req,res){
   res.json({
     success: "change 5",
     message2: req.headers,
