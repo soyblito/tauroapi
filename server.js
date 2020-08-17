@@ -334,7 +334,7 @@ app.get('/listproducts2', async (req,res)=>{
   });
 });
 
-app.get('/test', checker.checkToken); 
+app.post('/test', checker.checkToken); 
 
 app.post('/login', async function(req,res){
   const user = await ModelUser.findOne({ name: req.body.user });
