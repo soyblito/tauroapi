@@ -336,7 +336,7 @@ app.get('/listproducts2', async (req,res)=>{
   });
 });
 
-app.get('/test', async function(req,res){
+app.get('/test', function(req,res){
   //checktoken
   // let token = req.headers['authorization'];
   // token = token.slice(7, token.length);
@@ -363,8 +363,9 @@ app.get('/test', async function(req,res){
   //     message: 'Auth token is not supplied'
   //   });
   // }
+  let respuesta = checker.checkToken(req,res);
   res.json({
-    datos: checker.checkToken(req,res)
+    datos: respuesta && respuesta
   })
   // res.json({
   //   success: "change 5",

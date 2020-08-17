@@ -13,15 +13,15 @@ let checkToken = (req,res) => {
   if (token) {
     jwt.verify(token, config.secret, (err, decoded) => {
       if (err) {
-        return false
+        return 'Token is not valid'
         //console.log("err",err);
         // return res.json({
         //   success: false,
         //   message: 'Token is not valid'
         // });
       } else {
-        req.decoded = decoded;
-        return true
+        //req.decoded = decoded;
+        return 'Token valid'
         //next();
         // return res.json({
         //   success: true,
@@ -30,7 +30,7 @@ let checkToken = (req,res) => {
       }
     });
   } else {
-    return false
+    return 'Auth token is not supplied'
     // return res.json({
     //   success: false,
     //   message: 'Auth token is not supplied'
