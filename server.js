@@ -334,7 +334,14 @@ app.get('/listproducts2', async (req,res)=>{
   });
 });
 
-app.post('/test', checker.checkToken); 
+app.post('/test', async function(req,res){
+  res.json({
+    success: "change 5",
+    message2: req.headers,
+    message3: req.headers['authorization'],
+    message4: req.headers['Authorization'],
+  });
+}); 
 
 app.post('/login', async function(req,res){
   const user = await ModelUser.findOne({ name: req.body.user });
