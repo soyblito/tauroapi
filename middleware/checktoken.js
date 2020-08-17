@@ -5,7 +5,7 @@ let checkToken = (req,res,next) => {
   let token = req.headers.authorization; 
   return res.json({
     success: false,
-    message: token
+    message: req.headers
   });
   /*
   token = token.slice(7, token.length);
