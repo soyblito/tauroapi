@@ -1,3 +1,3 @@
 module.exports = {
-  secret: "blito-secret-key2"
+  secret: "blito-secret-key"
 };
