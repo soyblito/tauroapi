@@ -95,6 +95,7 @@ const ModelSales = require('./models/sales/model');
 const db = require('./db');
 const jwt = require("jsonwebtoken");
 const bCrypt = require('bcrypt');
+const checktoken = require("./middleware/checktoken");
 
 db();
 
@@ -324,6 +325,7 @@ app.post('/sales/delete', async (req,res)=>{
 });
 
 app.get('/listproducts2', async (req,res)=>{
+  // aca hacer lo del verify
   res.send({
     error: false,
     body: [
@@ -335,32 +337,35 @@ app.get('/listproducts2', async (req,res)=>{
 });
 
 app.get('/test', async function(req,res){
-  let token = req.headers['authorization'];
-  token = token.slice(7, token.length);
-  if (token) {
-    jwt.verify(token, config.secret, (err, decoded) => {
-      if (err) {
-        //console.log("err",err);
-        res.json({
-          success: false,
-          message: 'Token is not valid'
-        });
-      } else {
-        req.decoded = decoded;
-        //next();
-        res.json({
-          success: true,
-          message: 'Token valid'
-        });
-      }
-    });
-  } else {
-    res.json({
-      success: false,
-      message: 'Auth token is not supplied'
-    });
-  }
-  
+  //checktoken
+  // let token = req.headers['authorization'];
+  // token = token.slice(7, token.length);
+  // if (token) {
+  //   jwt.verify(token, config.secret, (err, decoded) => {
+  //     if (err) {
+  //       //console.log("err",err);
+  //       res.json({
+  //         success: false,
+  //         message: 'Token is not valid'
+  //       });
+  //     } else {
+  //       req.decoded = decoded;
+  //       //next();
+  //       res.json({
+  //         success: true,
+  //         message: 'Token valid'
+  //       });
+  //     }
+  //   });
+  // } else {
+  //   res.json({
+  //     success: false,
+  //     message: 'Auth token is not supplied'
+  //   });
+  // }
+  res.json({
+    datos: checker.checkToken(req,res)
+  })
   // res.json({
   //   success: "change 5",
   //   message2: req.headers,
