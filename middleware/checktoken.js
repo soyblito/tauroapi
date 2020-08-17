@@ -4,8 +4,8 @@ const config = require('../config/auth.config');
 let checkToken = (req,res,next) => {
   let token = req.headers.authorization; 
   return res.json({
-    success: false,
-    message: req.headers
+    success: "change 1",
+    message: req.headers['authorization']
   });
   /*
   token = token.slice(7, token.length);
