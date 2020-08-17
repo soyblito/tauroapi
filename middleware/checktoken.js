@@ -2,13 +2,10 @@ let jwt = require('jsonwebtoken');
 const config = require('../config/auth.config');
 
 let checkToken = (req,res,next) => {
-  let token = req.headers.authorization; 
+  //let token = req.headers.authorization; 
   return res.json({
-    success: "change 1",
-    message1: req.headers['authorization'],
+    success: "change 2",
     message2: req.headers['Authorization'],
-    message3: req.headers,
-    message4: req,
   });
   /*
   token = token.slice(7, token.length);
