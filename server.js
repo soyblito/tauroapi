@@ -335,12 +335,38 @@ app.get('/listproducts2', async (req,res)=>{
 });
 
 app.get('/test', async function(req,res){
-  res.json({
-    success: "change 5",
-    message2: req.headers,
-    message3: req.headers['authorization'],
-    message4: req.headers['Authorization'],
-  });
+  let token = req.headers['authorization'];
+  token = token.slice(7, token.length);
+  if (token) {
+    jwt.verify(token, config.secret, (err, decoded) => {
+      if (err) {
+        //console.log("err",err);
+        res.json({
+          success: false,
+          message: 'Token is not valid'
+        });
+      } else {
+        req.decoded = decoded;
+        //next();
+        res.json({
+          success: true,
+          message: 'Token valid'
+        });
+      }
+    });
+  } else {
+    res.json({
+      success: false,
+      message: 'Auth token is not supplied'
+    });
+  }
+  
+  // res.json({
+  //   success: "change 5",
+  //   message2: req.headers,
+  //   message3: req.headers['authorization'],
+  //   message4: req.headers['Authorization'],
+  // });
 }); 
 
 app.post('/login', async function(req,res){
