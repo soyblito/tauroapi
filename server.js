@@ -265,6 +265,7 @@ app.post('/sales/add', async (req,res) => {
     sellsmenValue: req.body.body.sellsmenValue,
     amount: req.body.body.amount,
     sellstateValue: req.body.body.sellstateValue,
+    sellstateValue2: req.body.body.sellstateValue2,
     selectedProductsList: req.body.body.selectedProductsList
   };
   

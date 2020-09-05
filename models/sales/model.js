@@ -14,6 +14,7 @@ const mySchema = new Schema({
   sellsmenValue: Number,
   amount: Number,
   sellstateValue: Number,
+  sellstateValue2: Number,
   selectedProductsList: Array,
 });
 
