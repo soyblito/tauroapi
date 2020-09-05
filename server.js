@@ -255,6 +255,7 @@ app.post('/products/retrieveApp', async (req,res) => {
 
 app.post('/sales/add', async (req,res) => {
   const item = {
+    descrip: req.body.body.descripSale,
     clientName: req.body.body.clientName,
     clientPhone: req.body.body.clientPhone,
     clientAdress: req.body.body.clientAdress,
@@ -364,6 +365,7 @@ app.get('/test', function(req,res){
   //   });
   // }
   let respuesta = checker.checkToken(req,res);
+  
   res.json({
     datos: respuesta && respuesta
   })
