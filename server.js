@@ -297,8 +297,8 @@ app.post('/sales/retrieveApp', async (req,res) => {
 
 
 app.post('/sales/update', async (req,res) => {
-  const {clientName, clientPhone, clientAdress,deliveryValue,contactValue,paymentValue,sellsmenValue,amount,sellstateValue,selectedProductsList} = req.body.body;
-  const myRequest = await ModelSales.findByIdAndUpdate({_id:req.body.body._id}, { clientName, clientPhone, clientAdress,deliveryValue,contactValue,paymentValue,sellsmenValue,amount,sellstateValue,selectedProductsList });
+  const {clientName, clientPhone, clientAdress,deliveryValue,contactValue,paymentValue,sellsmenValue,amount,sellstateValue,sellstateValue2,selectedProductsList} = req.body.body;
+  const myRequest = await ModelSales.findByIdAndUpdate({_id:req.body.body._id}, { clientName, clientPhone, clientAdress,deliveryValue,contactValue,paymentValue,sellsmenValue,amount,sellstateValue,sellstateValue2, selectedProductsList });
 
   res.send({
     error: false,
