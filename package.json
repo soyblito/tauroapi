@@ -1,21 +1,21 @@
 {
-  "name": "gluckapi",
+  "name": "tauroapi",
   "version": "1.0.0",
-  "description": "api de prueba con node para gluck",
+  "description": "api de prueba con node para tauro",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/soyblito/gluckapi.git"
+    "url": "git+https://github.com/soyblito/tauroapi.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/soyblito/gluckapi/issues"
+    "url": "https://github.com/soyblito/tauroapi/issues"
   },
-  "homepage": "https://github.com/soyblito/gluckapi#readme",
+  "homepage": "https://github.com/soyblito/tauroapi#readme",
   "dependencies": {
     "bcrypt": "^4.0.1",
     "express": "^4.17.1",
