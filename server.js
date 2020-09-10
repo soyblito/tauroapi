@@ -410,6 +410,28 @@ app.post('/login', async function(req,res){
 
 });
 
+app.post('/adduser', function(req,res){
+  //const user = await ModelUser.findOne({ name: req.body.user });
+
+  const [name,pass,level,state] = req.body;
+
+  const item = {
+    name,
+    pass, 
+    level,
+    state
+  };
+
+  const myRequest = new ModelUser(item);
+  const dataSaved = myRequest.save();
+
+  res.send({
+    error: true,
+    body: dataSaved,
+  }); 
+
+});
+
 app.post('/login2', async function (req, res) {
   //console.log(req.body.user);
   //console.log(req.body.pass);
