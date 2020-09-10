@@ -142,6 +142,19 @@ app.post('/categories/add', async (req,res) => {
   });
 });
 
+app.get('/categories/add1', async (req,res) => {
+  const item = {
+    name: "deprueba1",
+    description: "descrip de prueba1",
+  };
+  const myRequest = new ModelCategories(item);
+  const dataSaved = myRequest.save();
+  res.send({
+    error: false,
+    body: dataSaved,
+  });
+});
+
 app.get('/categories/listcategories', async (req,res)=>{ 
   const categories = await ModelCategories.find();
   res.send({
@@ -410,7 +423,7 @@ app.post('/login', async function(req,res){
 
 });
 
-app.post('/adduser', function(req,res){
+app.post('/adduser', async function(req,res){
   //const user = await ModelUser.findOne({ name: req.body.user });
 
   //const [name,pass,level,state] = req.body;
@@ -423,7 +436,7 @@ app.post('/adduser', function(req,res){
   };
 
   const myRequest = new ModelUser(item);
-  const dataSaved = myRequest.save();
+  const dataSaved = await myRequest.save();
 
   res.send({
     error: true,
