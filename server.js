@@ -413,13 +413,13 @@ app.post('/login', async function(req,res){
 app.post('/adduser', function(req,res){
   //const user = await ModelUser.findOne({ name: req.body.user });
 
-  const [name,pass,level,state] = req.body;
+  //const [name,pass,level,state] = req.body;
 
   const item = {
-    name,
-    pass, 
-    level,
-    state
+    name: req.body.name,
+    pass: req.body.pass, 
+    level: req.body.level,
+    state: req.body.state
   };
 
   const myRequest = new ModelUser(item);
@@ -427,7 +427,7 @@ app.post('/adduser', function(req,res){
 
   res.send({
     error: true,
-    body: dataSaved,
+    body: req.body,
   }); 
 
 });
