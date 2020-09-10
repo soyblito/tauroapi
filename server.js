@@ -412,7 +412,7 @@ app.post('/login', async function(req,res){
 
 app.post('/adduser', async function(req,res){
   const user = await ModelUser.findOne({ name: req.body.name });
-
+  const error = user ? false : true;
   //const [name,pass,level,state] = req.body;
   /*
   const item = {
@@ -426,7 +426,7 @@ app.post('/adduser', async function(req,res){
   const dataSaved = await myRequest.save();
   */
   res.send({
-    error: true,
+    error,
     body: user,
   }); 
 
