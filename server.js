@@ -427,7 +427,7 @@ app.post('/adduser', function(req,res){
 
   res.send({
     error: true,
-    body: req.body,
+    body: dataSaved,
   }); 
 
 });
