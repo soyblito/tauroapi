@@ -412,7 +412,15 @@ app.post('/login', async function(req,res){
 
 app.post('/adduser', async function(req,res){
   const user = await ModelUser.findOne({ name: req.body.name });
-  const error = user ? false : true;
+  const error = user ? true : false;
+
+  let resp;
+  if( error ) {
+    resp = "no guardo, ya existe";
+  }else{
+    resp = "guardo el nuevo usuario";
+  }
+
   //const [name,pass,level,state] = req.body;
   /*
   const item = {
@@ -427,7 +435,7 @@ app.post('/adduser', async function(req,res){
   */
   res.send({
     error,
-    body: user,
+    body: resp,
   }); 
 
 });
