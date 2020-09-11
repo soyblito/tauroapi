@@ -416,23 +416,21 @@ app.post('/adduser', async function(req,res){
 
   let resp;
   if( error ) {
-    resp = "no guardo, ya existe";
+    resp = 'Ese usuario ya existe.';
   }else{
-    resp = "guardo el nuevo usuario";
+    bCrypt.hash(req.body.pass, 10, function(err, hash) {
+      const item = {
+        name: req.body.name,
+        pass: hash, 
+        level: req.body.level,
+        state: req.body.state
+      };
+      const myRequest = new ModelUser(item);
+      const dataSaved = await myRequest.save();
+      resp = 'Nuevo usuario creado.';
+    });
   }
 
-  //const [name,pass,level,state] = req.body;
-  /*
-  const item = {
-    name: req.body.name,
-    pass: req.body.pass, 
-    level: req.body.level,
-    state: req.body.state
-  };
-
-  const myRequest = new ModelUser(item);
-  const dataSaved = await myRequest.save();
-  */
   res.send({
     error,
     body: resp,
