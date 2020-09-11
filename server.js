@@ -379,7 +379,7 @@ app.get('/test', function(req,res){
 }); 
 
 app.post('/login', async function(req,res){
-  const user = await ModelUser.findOne({ name: req.body.user });
+  const user = await ModelUser.findOne({ name: req.body.name });
   if (user) {
     const datos = await bCrypt.compareSync(req.body.pass, user.pass);
     if( datos ){
