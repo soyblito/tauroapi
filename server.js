@@ -417,6 +417,10 @@ app.post('/adduser', async function(req,res){
   let resp;
   if( error ) {
     resp = 'Ese usuario ya existe.';
+    res.send({
+      error,
+      body: resp,
+    }); 
   }else{
     bCrypt.hash(req.body.pass, 10, function(err, hash) {
       const item = {
@@ -428,13 +432,17 @@ app.post('/adduser', async function(req,res){
       const myRequest = new ModelUser(item);
       const dataSaved = myRequest.save();
       resp = 'Nuevo usuario creado.';
+
+      res.send({
+        error,
+        body: resp,
+        datasaved: dataSaved,
+      }); 
+
     });
   }
 
-  res.send({
-    error,
-    body: resp,
-  }); 
+  
 
 });
 
