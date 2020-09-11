@@ -426,7 +426,7 @@ app.post('/adduser', async function(req,res){
         state: req.body.state
       };
       const myRequest = new ModelUser(item);
-      const dataSaved = await myRequest.save();
+      const dataSaved = myRequest.save();
       resp = 'Nuevo usuario creado.';
     });
   }
